@@ -14,8 +14,7 @@ export default class HTTPClientServiceImpl implements HTTPClientService {
             },
             body: JSON.stringify({ ...data }),
         })
-            .then((res) => res.json())
-            .then((json) => json.data);
+            .then((res) => res.json());
     }
     get<T = any, R = ResponseWrapper<T>>(_: string, config?: RequestWrapper): Promise<R> {
         throw new Error("Method not implemented.");

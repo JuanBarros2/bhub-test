@@ -1,15 +1,19 @@
 import * as React from "react";
-
-import { User } from "../../interfaces";
+import { Cliente } from "../../domain/Cliente";
 
 type ListDetailProps = {
-  item: User;
+  cliente: Cliente;
 };
 
-const ListDetail = ({ item: user }: ListDetailProps) => (
+const ListDetail = ({ cliente }: ListDetailProps) => (
   <div>
-    <h1>Detail for {user.name}</h1>
-    <p>ID: {user.id}</p>
+    <h2>{cliente.razaoSocial}</h2>
+    <div>
+      <span>Telefone: {cliente.telefone}</span>
+      <span>Endereço: {cliente.endereco}</span>
+      <span>Data de Criação: {cliente.dataCadastro}</span>
+      <span>Faturamento declarado: {cliente.faturamentoDeclarado}</span>
+    </div>
   </div>
 );
 

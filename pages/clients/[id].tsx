@@ -1,16 +1,14 @@
 import { GetStaticProps, GetStaticPaths } from "next";
-
-import { User } from "../../interfaces";
-import { sampleUserData } from "../../utils/sample-data";
 import { Layout } from "../../components";
 import ListDetail from "../../components/ListDetail/ListDetail";
+import { Cliente } from "../../domain/Cliente";
 
 type Props = {
-  item?: User;
+  cliente?: Cliente;
   errors?: string;
 };
 
-const StaticPropsDetail = ({ item, errors }: Props) => {
+const StaticPropsDetail = ({ cliente, errors }: Props) => {
   if (errors) {
     return (
       <Layout title="Error">
@@ -22,12 +20,8 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
   }
 
   return (
-    <Layout
-      title={`${
-        item ? item.name : "User Detail"
-      } | Next.js + TypeScript Example`}
-    >
-      {item && <ListDetail item={item} />}
+    <Layout title={`${cliente ? cliente.razaoSocial : "Detalhe de Cliente"} `}>
+      {cliente && <ListDetail cliente={cliente} />}
     </Layout>
   );
 };

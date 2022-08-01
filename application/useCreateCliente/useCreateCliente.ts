@@ -6,10 +6,10 @@ import InterfaceFactory from "../../factory/InterfaceFactory";
 export default function useCreateCliente() {
     const remoteAPI = InterfaceFactory.getRemoteApiService();
     const [call, setCall] = useState(undefined);
-    const { data, error } = useSWR<Cliente[]>(call);
+    const { data, error } = useSWR<Cliente[]>("createCliente", () => call);
     const dispatch = (cliente: Cliente) => setCall(remoteAPI.createCliente(cliente))
     return {
-        user: data,
+        cliente: data,
         isLoading: !error && !data,
         isError: error,
         dispatch
