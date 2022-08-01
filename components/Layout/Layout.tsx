@@ -19,6 +19,9 @@ const Layout = ({ children, title = "BHub" }: Props) => (
         <Link href="/">
           <a>Home</a>
         </Link>
+        <Link href="/create">
+          <a>Criar cliente</a>
+        </Link>
       </nav>
     </header>
     {children}

@@ -1,13 +1,18 @@
 import { HTTPClientService, RequestWrapper, ResponseWrapper } from "../../interfaces/HTTPClientService";
 
 export default class HTTPClientServiceImpl implements HTTPClientService {
+    private baseUrl: string;
+    constructor(baseUrl: string) {
+        this.baseUrl = baseUrl;
+    }
+
     post<T = any, R = ResponseWrapper<T>>(url: string, data?: any, config?: RequestWrapper): Promise<R> {
-        return fetch(url, {
+        return fetch(this.baseUrl + url, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify({ data }),
+            body: JSON.stringify({ ...data }),
         })
             .then((res) => res.json())
             .then((json) => json.data);

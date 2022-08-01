@@ -4,8 +4,8 @@ import HTTPClientServiceImpl from "../services/HTTPClientService/HTTPClientServi
 import GraphQlRemoteAPIServiceImpl from "../services/RemoteApiService/GraphQlRemoteAPIServiceImpl";
 
 export default class InterfaceFactory {
-    public static getHTTPClientService(): HTTPClientService {
-        return new HTTPClientServiceImpl();
+    public static getHTTPClientService(baseUrl: string): HTTPClientService {
+        return new HTTPClientServiceImpl(baseUrl);
     }
 
     public static getRemoteApiService(): RemoteAPIService {
