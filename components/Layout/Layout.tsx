@@ -8,14 +8,14 @@ type Props = {
 };
 
 const Layout = ({ children, title = "BHub" }: Props) => (
-  <div className="flex flex-col w-full justify-center p-4 ">
+  <div className="flex flex-col w-full justify-center p-4 px-8">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
-      <nav className="flex flex-row gap-8 justify-center">
+      <nav className="flex flex-row gap-8 justify-center flex-wrap my-4">
         <Link href="/">
           <a>Home</a>
         </Link>
@@ -24,7 +24,7 @@ const Layout = ({ children, title = "BHub" }: Props) => (
         </Link>
       </nav>
     </header>
-    {children}
+    <main className="container mx-auto my-4">{children}</main>
   </div>
 );
 

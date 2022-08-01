@@ -8,3 +8,14 @@ export const createCliente =
     endereco
   }
 }`
+
+export const deleteCliente =
+/* GraphQL */`mutation ($cliente: ClienteInput = {}) {
+  deleteCliente(cliente: $cliente){
+    dataCadastro
+    faturamentoDeclarado
+    razaoSocial
+    telefone
+    endereco
+  }
+}`

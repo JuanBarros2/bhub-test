@@ -1,7 +1,7 @@
 import { getClientes } from './Query';
-import { createCliente } from './Mutation';
+import { createCliente, deleteCliente } from './Mutation';
 import { HTTPClientService } from '../../interfaces/HTTPClientService';
-import { Cliente } from '../../domain/Cliente';
+import { Cliente, ClientId } from '../../domain/Cliente';
 import InterfaceFactory from '../../factory/InterfaceFactory';
 import { RemoteAPIService } from '../../interfaces/RemoteAPIService';
 
@@ -36,5 +36,14 @@ export default class GraphQlRemoteAPIServiceImpl implements RemoteAPIService {
                 cliente
             }
         }).then((res) => res.createCliente)
+    }
+
+    deleteCliente(razaoSocial: ClientId) {
+        return this.doCall<"deleteCliente", Cliente>({
+            query: deleteCliente,
+            variables: {
+                razaoSocial
+            }
+        }).then((res) => res.deleteCliente);
     }
 }

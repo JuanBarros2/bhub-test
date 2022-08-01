@@ -1,4 +1,4 @@
-import { Cliente } from './../../domain/Cliente';
+import { Cliente, ClientId } from './../../domain/Cliente';
 import { createServer, ResolverFn } from '@graphql-yoga/node'
 
 const typeDefs = /* GraphQL */ `
@@ -8,6 +8,7 @@ const typeDefs = /* GraphQL */ `
 
   type Mutation {
     createCliente(cliente: ClienteInput!): Cliente!
+    deleteCliente(razaoSocial: String!): [Cliente]
   }
 
   type DadoBancario {
@@ -15,7 +16,7 @@ const typeDefs = /* GraphQL */ `
     conta: String
     banco: String
   }
-  
+
   input DadoBancarioInput {
     agencia: String
     conta: String
@@ -41,7 +42,7 @@ const typeDefs = /* GraphQL */ `
   }
 
 `
-const clientes: Cliente[] = []
+let clientes: Cliente[] = []
 
 const resolvers = {
   Query: {
@@ -50,9 +51,13 @@ const resolvers = {
     },
   },
   Mutation: {
-    createCliente(parent: unknown, args: { cliente: Cliente }) {
+    createCliente(_: unknown, args: { cliente: Cliente }) {
       clientes.push(args.cliente)
       return args.cliente
+    },
+    deleteCliente(_: unknown, args: { razaoSocial: ClientId }) {
+      clientes = clientes.filter((cliente) => cliente.razaoSocial !== args.razaoSocial)
+      return clientes;
     }
   }
 }
