@@ -1,17 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
-import { User } from "../../interfaces";
+import { Cliente } from "../../domain/Cliente";
 
 type Props = {
-  data: User;
+  data: Cliente;
 };
 
 const ListItem = ({ data }: Props) => (
-  <Link href="/clients/[id]" as={`/users/${data.id}`}>
-    <a>
-      {data.id}: {data.name}
-    </a>
+  <Link href="/clients/[id]" as={`/clients/${data.razaoSocial}`}>
+    <a>Razão Social: {data.razaoSocial}</a>
   </Link>
 );
 
