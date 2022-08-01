@@ -10,12 +10,12 @@ export const createCliente =
 }`
 
 export const deleteCliente =
-/* GraphQL */`mutation ($cliente: ClienteInput = {}) {
-  deleteCliente(cliente: $cliente){
+/* GraphQL */`mutation ($razaoSocial: String = "") {
+  deleteCliente(razaoSocial: $razaoSocial) {
     dataCadastro
+    endereco
     faturamentoDeclarado
     razaoSocial
     telefone
-    endereco
   }
 }`

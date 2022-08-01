@@ -39,7 +39,7 @@ export default class GraphQlRemoteAPIServiceImpl implements RemoteAPIService {
     }
 
     deleteCliente(razaoSocial: ClientId) {
-        return this.doCall<"deleteCliente", Cliente>({
+        return this.doCall<"deleteCliente", Cliente[]>({
             query: deleteCliente,
             variables: {
                 razaoSocial

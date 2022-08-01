@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Cliente } from "../../domain/Cliente";
+import DeleteClienteButton from "../DeleteClienteButton/DeleteClienteButton";
 
 type ListDetailProps = {
   cliente: Cliente;
@@ -13,6 +14,7 @@ const ListDetail = ({ cliente }: ListDetailProps) => (
       <span>Endereço: {cliente.endereco}</span>
       <span>Data de Criação: {cliente.dataCadastro}</span>
       <span>Faturamento declarado: {cliente.faturamentoDeclarado}</span>
+      <DeleteClienteButton cliente={cliente} />
     </div>
   </div>
 );
