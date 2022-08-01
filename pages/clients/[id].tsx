@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { Layout } from "../../components";
 import ListDetail from "../../components/ListDetail/ListDetail";
 import { Cliente } from "../../domain/Cliente";
+import InterfaceFactory from "../../factory/InterfaceFactory";
 
 type Props = {
   cliente?: Cliente;
@@ -29,9 +30,9 @@ const StaticPropsDetail = ({ cliente, errors }: Props) => {
 export default StaticPropsDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get the paths we want to pre-render based on users
-  const paths = sampleUserData.map((user) => ({
-    params: { id: user.id.toString() },
+  const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
+  const paths = clientes.map((cliente) => ({
+    params: { id: cliente.razaoSocial.toString() },
   }));
 
   // We'll pre-render only these paths at build time.
@@ -44,11 +45,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // direct database queries.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const id = params?.id;
-    const item = sampleUserData.find((data) => data.id === Number(id));
+    const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
+    const razaoSocial = params?.id;
+    const cliente = clientes.find((data) => data.razaoSocial === razaoSocial);
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time
-    return { props: { item } };
+    return { props: { cliente } };
   } catch (err: any) {
     return { props: { errors: err.message } };
   }
