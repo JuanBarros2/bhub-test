@@ -35,8 +35,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     params: { id: cliente.razaoSocial.toString() },
   }));
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
   return { paths, fallback: false };
 };
 
@@ -44,13 +42,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // It won't be called on client-side, so you can even do
 // direct database queries.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const TIME_TO_REVALIDATE = 60;
   try {
     const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
     const razaoSocial = params?.id;
     const cliente = clientes.find((data) => data.razaoSocial === razaoSocial);
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time
-    return { props: { cliente } };
+    return { props: { cliente }, revalidate: TIME_TO_REVALIDATE };
   } catch (err: any) {
     return { props: { errors: err.message } };
   }
