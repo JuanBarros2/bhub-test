@@ -1,10 +1,14 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import useCreateCliente from "../../application/useCreateCliente/useCreateCliente";
 import { Cliente } from "../../domain/Cliente";
 
-export default function ClienteForm() {
-  const { dispatch, isLoading, isCompleted } = useCreateCliente();
+interface ClientFormProps {
+  onFormSubmit: (cliente: Cliente) => void;
+  isLoading: boolean;
+}
+
+export default function ClienteForm({
+  onFormSubmit,
+  isLoading,
+}: ClientFormProps) {
   const onSubmit = (event) => {
     event.preventDefault();
     const cliente: Cliente = {
@@ -15,14 +19,9 @@ export default function ClienteForm() {
       faturamentoDeclarado: Number(event.target[3].value),
       dadosBancarios: [],
     };
-    dispatch(cliente);
+    onFormSubmit(cliente);
   };
-  const router = useRouter();
-  useEffect(() => {
-    if (isCompleted) {
-      router.push("/");
-    }
-  }, [isCompleted, router]);
+
   return (
     <form onSubmit={onSubmit} className="flex flex-col w-fit justify-center">
       <input type="text" placeholder="Razão Social" required />

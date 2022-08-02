@@ -1,16 +1,28 @@
 import { Cliente, ClientId } from './../../domain/Cliente';
-import { createServer, ResolverFn } from '@graphql-yoga/node'
+import { createServer } from '@graphql-yoga/node'
 
 const typeDefs = /* GraphQL */ `
   type Query {
+    """
+    Retorna a lista com todos os clientes.
+    """
     clientes: [Cliente]
   }
 
   type Mutation {
+    """
+    Cria um cliente e retorna o cliente criado.
+    """
     createCliente(cliente: ClienteInput!): Cliente!
+    """
+    Deleta um cliente dado a razão social. Retorna a lista atualizada de clientes.
+    """
     deleteCliente(razaoSocial: String!): [Cliente]
   }
 
+  """
+  Representação dos dados bancários.
+  """
   type DadoBancario {
     agencia: String
     conta: String
@@ -23,6 +35,9 @@ const typeDefs = /* GraphQL */ `
     banco: String
   }
 
+  """
+  Representação de um cliente.
+  """
   type Cliente {
     razaoSocial: String
     telefone: String
