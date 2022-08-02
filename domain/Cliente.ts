@@ -7,7 +7,7 @@ export type Cliente = {
   razaoSocial: string;
   telefone: string;
   endereco: string;
-  dataCadastro: Date;
+  dataCadastro: string;
   faturamentoDeclarado: number;
   dadosBancarios: DadoBancario[]
 }

@@ -14,7 +14,10 @@ const ListDetail = ({ cliente }: ListDetailProps) => (
       <div className="flex flex-col mb-8">
         <span>Telefone: {cliente.telefone}</span>
         <span>Endereço: {cliente.endereco}</span>
-        <span>Data de Criação: {cliente.dataCadastro.toDateString()}</span>
+        <span>
+          Data de Criação:{" "}
+          {new Date(parseInt(cliente.dataCadastro)).toDateString()}
+        </span>
         <span>Faturamento declarado: {cliente.faturamentoDeclarado}</span>
       </div>
       <div className="flex flex-row gap-2">
