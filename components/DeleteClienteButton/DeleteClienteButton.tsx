@@ -19,7 +19,7 @@ export default function DeleteClienteButton({
   }
   return (
     <button
-      className="bg-slate-50 text-red-500 border-red-700 border-solid"
+      className="btn btn-secondary"
       onClick={onClick}
       disabled={isLoading}
     >

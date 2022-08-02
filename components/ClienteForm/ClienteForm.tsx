@@ -3,15 +3,18 @@ import { Cliente } from "../../domain/Cliente";
 interface ClientFormProps {
   onFormSubmit: (cliente: Cliente) => void;
   isLoading: boolean;
+  submitMessage?: string;
 }
 
 export default function ClienteForm({
   onFormSubmit,
   isLoading,
+  submitMessage = "Enviar",
 }: ClientFormProps) {
   const onSubmit = (event) => {
     event.preventDefault();
     const cliente: Cliente = {
+      id: "",
       razaoSocial: event.target[0].value,
       telefone: event.target[1].value,
       endereco: event.target[2].value,
@@ -30,8 +33,9 @@ export default function ClienteForm({
       <input type="text" placeholder="Faturamento" required />
       <input
         type="submit"
-        disabled={!!isLoading}
-        className={!!isLoading ? "bg-gray-400" : "bg-blue-500"}
+        disabled={isLoading}
+        value={submitMessage}
+        className={`btn btn-${isLoading ? "terciary" : "primary"}`}
       />
     </form>
   );

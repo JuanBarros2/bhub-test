@@ -3,7 +3,8 @@ import { DadoBancario } from './DadoBancario';
 export type ClientId = string;
 
 export type Cliente = {
-  razaoSocial: ClientId;
+  id: ClientId;
+  razaoSocial: string;
   telefone: string;
   endereco: string;
   dataCadastro: Date;

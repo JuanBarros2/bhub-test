@@ -1,5 +1,5 @@
 import { getClientes } from './Query';
-import { createCliente, deleteCliente } from './Mutation';
+import { createCliente, deleteCliente, updateCliente } from './Mutation';
 import { HTTPClientService } from '../../interfaces/HTTPClientService';
 import { Cliente, ClientId } from '../../domain/Cliente';
 import InterfaceFactory from '../../factory/InterfaceFactory';
@@ -36,6 +36,16 @@ export default class GraphQlRemoteAPIServiceImpl implements RemoteAPIService {
                 cliente
             }
         }).then((res) => res.createCliente)
+    }
+
+    updateCliente(cliente: Cliente) {
+        console.log(cliente)
+        return this.doCall<"updateCliente", Cliente>({
+            query: updateCliente,
+            variables: {
+                cliente
+            }
+        }).then((res) => res.updateCliente)
     }
 
     deleteCliente(razaoSocial: ClientId) {

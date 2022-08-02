@@ -5,4 +5,5 @@ export interface RemoteAPIService {
     getClientes: () => Promise<Cliente[]>
     createCliente: (cliente: Cliente) => Promise<Cliente>
     deleteCliente: (razaoSocial: ClientId) => Promise<Cliente[]>
+    updateCliente: (cliente: Cliente) => Promise<Cliente>
 }

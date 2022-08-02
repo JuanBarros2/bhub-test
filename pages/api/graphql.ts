@@ -1,63 +1,9 @@
 import { Cliente, ClientId } from './../../domain/Cliente';
 import { createServer } from '@graphql-yoga/node'
+import { typeDefs } from '../../graphql/typeDefs';
 
-const typeDefs = /* GraphQL */ `
-  type Query {
-    """
-    Retorna a lista com todos os clientes.
-    """
-    clientes: [Cliente]
-  }
-
-  type Mutation {
-    """
-    Cria um cliente e retorna o cliente criado.
-    """
-    createCliente(cliente: ClienteInput!): Cliente!
-    """
-    Deleta um cliente dado a razão social. Retorna a lista atualizada de clientes.
-    """
-    deleteCliente(razaoSocial: String!): [Cliente]
-  }
-
-  """
-  Representação dos dados bancários.
-  """
-  type DadoBancario {
-    agencia: String
-    conta: String
-    banco: String
-  }
-
-  input DadoBancarioInput {
-    agencia: String
-    conta: String
-    banco: String
-  }
-
-  """
-  Representação de um cliente.
-  """
-  type Cliente {
-    razaoSocial: String
-    telefone: String
-    endereco: String
-    dataCadastro: String
-    faturamentoDeclarado: Float
-    dadosBancarios: [DadoBancario]
-  }
-
-  input ClienteInput {
-    razaoSocial: String
-    telefone: String
-    endereco: String
-    dataCadastro: String
-    faturamentoDeclarado: Float
-    dadosBancarios: [DadoBancarioInput]
-  }
-
-`
 let clientes: Cliente[] = []
+let indexKey = 0
 
 const resolvers = {
   Query: {
@@ -67,13 +13,22 @@ const resolvers = {
   },
   Mutation: {
     createCliente(_: unknown, args: { cliente: Cliente }) {
-      clientes.push(args.cliente)
+      const newId = indexKey
+      indexKey++;
+      const newCliente = { ...args.cliente, id: `${newId}`, dataCadastro: new Date() }
+      clientes.push(newCliente)
+      return newCliente
+    },
+    deleteCliente(_: unknown, args: { id: ClientId }) {
+      clientes = clientes.filter((cliente) => cliente.id !== args.id)
+      return clientes;
+    },
+    updateCliente(_: unknown, args: { cliente: Cliente }) {
+      clientes = clientes.map((cliente) => cliente.id === args.cliente.id
+        ? args.cliente
+        : cliente)
       return args.cliente
     },
-    deleteCliente(_: unknown, args: { razaoSocial: ClientId }) {
-      clientes = clientes.filter((cliente) => cliente.razaoSocial !== args.razaoSocial)
-      return clientes;
-    }
   }
 }
 

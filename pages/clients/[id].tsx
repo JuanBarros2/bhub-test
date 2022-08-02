@@ -32,7 +32,7 @@ export default StaticPropsDetail;
 export const getStaticPaths: GetStaticPaths = async () => {
   const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
   const paths = clientes.map((cliente) => ({
-    params: { id: cliente.razaoSocial.toString() },
+    params: { id: cliente.id },
   }));
 
   return { paths, fallback: false };
@@ -45,8 +45,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const TIME_TO_REVALIDATE = 60;
   try {
     const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
-    const razaoSocial = params?.id;
-    const cliente = clientes.find((data) => data.razaoSocial === razaoSocial);
+    const id = params?.id;
+    const cliente = clientes.find((data) => data.id === id);
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time
     return { props: { cliente }, revalidate: TIME_TO_REVALIDATE };
