@@ -35,9 +35,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const paths = clientes.map((cliente) => ({
       params: { id: cliente.id },
     }));
-    return { paths, fallback: false };
+    return { paths, fallback: "blocking" };
   } catch (err: any) {
-    return { paths: [], fallback: false };
+    return { paths: [], fallback: "blocking" };
   }
 };
 
@@ -50,8 +50,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
     const id = params?.id;
     const cliente = clientes.find((data) => data.id === id);
-    // By returning { props: item }, the StaticPropsDetail component
-    // will receive `item` as a prop at build time
+    if (!cliente) throw Error("Cliente não encontrado");
     return { props: { cliente }, revalidate: TIME_TO_REVALIDATE };
   } catch (err: any) {
     return { props: { errors: err.message } };
