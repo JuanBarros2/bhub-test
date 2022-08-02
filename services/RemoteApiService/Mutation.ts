@@ -11,8 +11,8 @@ export const createCliente =
 }`
 
 export const deleteCliente =
-/* GraphQL */`mutation ($razaoSocial: String = "") {
-  deleteCliente(razaoSocial: $razaoSocial) {
+/* GraphQL */`mutation ($clienteId: ID = "") {
+  deleteCliente(clienteId: $clienteId) {
     id
     dataCadastro
     endereco

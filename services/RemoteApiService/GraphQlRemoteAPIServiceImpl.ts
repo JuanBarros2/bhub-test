@@ -39,7 +39,6 @@ export default class GraphQlRemoteAPIServiceImpl implements RemoteAPIService {
     }
 
     updateCliente(cliente: Cliente) {
-        console.log(cliente)
         return this.doCall<"updateCliente", Cliente>({
             query: updateCliente,
             variables: {
@@ -48,11 +47,11 @@ export default class GraphQlRemoteAPIServiceImpl implements RemoteAPIService {
         }).then((res) => res.updateCliente)
     }
 
-    deleteCliente(razaoSocial: ClientId) {
+    deleteCliente(clienteId: ClientId) {
         return this.doCall<"deleteCliente", Cliente[]>({
             query: deleteCliente,
             variables: {
-                razaoSocial
+                razaoSocial: clienteId
             }
         }).then((res) => res.deleteCliente);
     }
