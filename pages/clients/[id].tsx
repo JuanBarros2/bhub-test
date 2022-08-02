@@ -53,6 +53,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     if (!cliente) throw Error("Cliente não encontrado");
     return { props: { cliente }, revalidate: TIME_TO_REVALIDATE };
   } catch (err: any) {
-    return { props: { errors: err.message } };
+    return { props: { errors: err.message }, revalidate: 1 };
   }
 };
