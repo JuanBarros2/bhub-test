@@ -30,12 +30,15 @@ const StaticPropsDetail = ({ cliente, errors }: Props) => {
 export default StaticPropsDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
-  const paths = clientes.map((cliente) => ({
-    params: { id: cliente.id },
-  }));
-
-  return { paths, fallback: false };
+  try {
+    const clientes = await InterfaceFactory.getRemoteApiService().getClientes();
+    const paths = clientes.map((cliente) => ({
+      params: { id: cliente.id },
+    }));
+    return { paths, fallback: false };
+  } catch (err: any) {
+    return { paths: [], fallback: false };
+  }
 };
 
 // This function gets called at build time on server-side.

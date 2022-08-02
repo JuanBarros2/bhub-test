@@ -12,7 +12,8 @@ export default class GraphQlRemoteAPIServiceImpl implements RemoteAPIService {
     private endpoint: string;
 
     constructor() {
-        this.httpClient = InterfaceFactory.getHTTPClientService("http://localhost:3000");
+        const baseUrlRemote = InterfaceFactory.getEnvService().get('NEXT_REMOTE_API')
+        this.httpClient = InterfaceFactory.getHTTPClientService(baseUrlRemote);
         this.endpoint = "/api/graphql"
     }
 

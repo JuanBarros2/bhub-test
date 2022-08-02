@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import useSWR from "swr";
+import { useState } from "react";
 import { Cliente } from "../../domain/Cliente";
 import InterfaceFactory from "../../factory/InterfaceFactory";
 

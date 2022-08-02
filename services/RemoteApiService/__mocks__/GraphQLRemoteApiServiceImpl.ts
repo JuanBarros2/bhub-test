@@ -5,7 +5,6 @@ export default class GraphQlRemoteAPIServiceImpl implements RemoteAPIService {
 
     getClientes() {
         return new Promise<Cliente[]>((resolve, _) => {
-            console.log("API CHAMADA")
             resolve([])
         })
     }
