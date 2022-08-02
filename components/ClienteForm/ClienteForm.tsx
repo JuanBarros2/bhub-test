@@ -18,7 +18,7 @@ export default function ClienteForm({
       razaoSocial: event.target[0].value,
       telefone: event.target[1].value,
       endereco: event.target[2].value,
-      dataCadastro: new Date(),
+      dataCadastro: "",
       faturamentoDeclarado: Number(event.target[3].value),
       dadosBancarios: [],
     };

@@ -15,7 +15,7 @@ const resolvers = {
     createCliente(_: unknown, args: { cliente: Cliente }) {
       const newId = indexKey
       indexKey++;
-      const newCliente = { ...args.cliente, id: `${newId}`, dataCadastro: new Date() }
+      const newCliente = { ...args.cliente, id: `${newId}`, dataCadastro: new Date().getDate().toString() }
       clientes.push(newCliente)
       return newCliente
     },
