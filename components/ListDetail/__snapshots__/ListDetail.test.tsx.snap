@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should match with snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-row gap-10 justify-center"
+  >
+    <div>
+      <h2
+        class="text-lg"
+      >
+        Bhub
+      </h2>
+      <div
+        class="flex flex-col mb-8"
+      >
+        <span>
+          Telefone: 
+          99999999
+        </span>
+        <span>
+          Endereço: 
+          Rua Nova
+        </span>
+        <span>
+          Data de Criação: 
+          Invalid Date
+        </span>
+        <span>
+          Faturamento declarado: 
+          1111
+        </span>
+      </div>
+      <div
+        class="flex flex-row gap-2"
+      >
+        <button
+          class="btn btn-secondary"
+        >
+          Deletar
+        </button>
+      </div>
+    </div>
+    <div>
+      <div>
+        <form
+          class="flex flex-col w-fit justify-center"
+        >
+          <input
+            placeholder="Razão Social"
+            required=""
+            type="text"
+          />
+          <input
+            placeholder="Telefone"
+            required=""
+            type="text"
+          />
+          <input
+            placeholder="Endereço"
+            required=""
+            type="text"
+          />
+          <input
+            placeholder="Faturamento"
+            required=""
+            type="text"
+          />
+          <input
+            class="btn btn-primary"
+            type="submit"
+            value="Editar cliente"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
