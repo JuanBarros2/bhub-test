@@ -19,6 +19,7 @@ Adicione aqui capturas de tela que ajudem a entender as mudanças realizadas, es
 - [ ] Meu código segue as diretrizes de estilo do projeto.
 - [ ] Eu verifiquei se há dependências de terceiros que devem ser atualizadas ou instaladas.
 - [ ] Testei as mudanças localmente.
+- [ ] Verifiquei o tamanho dos pacotes adicionados.
 - [ ] Garanti que os componentes adicionados estão acessíveis.
 - [ ] Garanti que os componentes estão responsivos.
 - [ ] Documentei as mudanças, quando necessário.
