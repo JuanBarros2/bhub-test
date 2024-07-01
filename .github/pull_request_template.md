@@ -1,3 +1,11 @@
+---
+name: Feature > Novo componente
+about: Sugestões para novos componentes para o projeto
+title: "Teste"
+labels: new-component
+assignees: ''
+---
+
 ## Descrição
 
 Descreva brevemente qual foi o objetivo desta alteração. Inclua qualquer contexto ou referência a problemas relacionados.
