@@ -4,6 +4,7 @@ about: Sugestões para novos componentes para o projeto
 title: "Teste"
 labels: new-component
 assignees: ''
+---
 
 ## Descrição
 
