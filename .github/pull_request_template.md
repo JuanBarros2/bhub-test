@@ -20,7 +20,6 @@ Adicione aqui capturas de tela que ajudem a entender as mudanças realizadas, es
 - [ ] Eu verifiquei se há dependências de terceiros que devem ser atualizadas ou instaladas.
 - [ ] Testei as mudanças localmente.
 - [ ] Verifiquei o tamanho dos pacotes adicionados.
-- [ ] Garanti que os componentes adicionados estão acessíveis.
 - [ ] Garanti que os componentes estão responsivos.
 - [ ] Documentei as mudanças, quando necessário.
 - [ ] Adicionei testes que comprovam a correção das mudanças, quando aplicável.
